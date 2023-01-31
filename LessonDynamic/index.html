@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Animation</title>
+    <script src="../AFrame/aframe-master.min.js"></script>
+</head>
+
+<body>
+    <a-scene stats>
+        <a-sky src="../src/img/stars.jpg"></a-sky>
+        <a-assets>
+            <a-mixin id="planet" geometry="primitive: sphere; radius: 0.5"></a-mixin>
+            <a-mixin id="orbitAnimation"
+                animation="property: object3D.rotation.y; to: 360; loop: true; easing: linear; dur: 3000"></a-mixin>
+            <a-mixin id="spinAnimation"
+                animation="property: object3D.rotation.y; to: 360; loop: true; easing: linear; dur: 96000"></a-mixin>
+            <img id="sun" src="../src/img/sun.png">
+        </a-assets>
+        <a-entity position="0 0 6">
+            <a-camera wasd-controls-enabled="true"></a-camera>
+        </a-entity>
+        <a-entity position="0 0 -5">
+
+            <a-entity light="type: point; intensity: 2"></a-entity>
+            <a-entity light="type: ambient; color: #888"></a-entity>
+            <a-entity mixin="planet spinAnimation" geometry="radius: 3" material="shader: flat; src: #sun"></a-entity>
+            <a-entity mixin="orbitAnimation" animation="dur: 8000">
+                <a-sphere mixin="planet" src="../src/img/merc.png" position="8 0 0" geometry="radius: 1"></a-sphere>
+            </a-entity>
+            <a-entity mixin="orbitAnimation" animation="dur: 4000">
+                <a-sphere mixin="planet" src="../src/img/venus.png" position="6 0 0"></a-sphere>
+            </a-entity>
+            <a-entity mixin="orbitAnimation" animation="dur: 12000">
+                <a-sphere mixin="planet" src="../src/img/earth.png" position="10 0 0"></a-sphere>
+            </a-entity>
+            <a-entity mixin="orbitAnimation" animation="dur: 16000">
+                <a-sphere mixin="planet" src="../src/img/mars.png" position="12 0 0"></a-sphere>
+            </a-entity>
+
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>
